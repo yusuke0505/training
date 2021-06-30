@@ -28,21 +28,11 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'レベル1',
-      style: optionStyle,
-    ),
-    Text(
-      'レベル2',
-      style: optionStyle,
-    ),
-    Text(
-      'レベル3',
-      style: optionStyle,
-    ),
+    Level1(),
+    Level2(),
+    Level3(),
   ];
 
   void _onItemTapped(int index) {
@@ -79,6 +69,42 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+class Level1 extends StatelessWidget {
+  const Level1();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'レベル1',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    );
+  }
+}
+
+class Level2 extends StatelessWidget {
+  const Level2();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'レベル2',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    );
+  }
+}
+
+class Level3 extends StatelessWidget {
+  const Level3();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'レベル3',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
