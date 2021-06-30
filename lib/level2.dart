@@ -43,11 +43,18 @@ class Level2 extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 20),
+                SizedBox(
+                  width: 16,
+                  height: 16,
+                ),
                 Text('ボタン3'),
                 SizedBox(
-                  width: 20,
-                  child: Icon(Icons.arrow_forward),
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    Icons.search,
+                    size: 16,
+                  ),
                 ),
               ],
             ),
