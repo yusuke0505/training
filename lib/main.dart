@@ -1,12 +1,3 @@
-/// Flutter code sample for BottomNavigationBar
-
-// This example shows a [BottomNavigationBar] as it is used within a [Scaffold]
-// widget. The [BottomNavigationBar] has three [BottomNavigationBarItem]
-// widgets, which means it defaults to [BottomNavigationBarType.fixed], and
-// the [currentIndex] is set to index 0. The selected item is
-// amber. The `_onItemTapped` function changes the selected item's index
-// and displays a corresponding message in the center of the [Scaffold].
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -41,15 +32,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'レベル1',
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'レベル2',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'レベル3',
       style: optionStyle,
     ),
   ];
@@ -64,7 +55,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('トレーニング'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -72,16 +63,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: SizedBox.shrink(),
+            label: 'レベル1',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: SizedBox.shrink(),
+            label: 'レベル2',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: SizedBox.shrink(),
+            label: 'レベル3',
           ),
         ],
         currentIndex: _selectedIndex,
