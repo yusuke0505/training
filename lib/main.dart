@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'level1.dart';
+import 'level2.dart';
+import 'level3.dart';
+
 void main() => runApp(const MyApp());
 
 /// This is the main application widget.
@@ -69,42 +73,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-    );
-  }
-}
-
-class Level1 extends StatelessWidget {
-  const Level1();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'レベル1',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    );
-  }
-}
-
-class Level2 extends StatelessWidget {
-  const Level2();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'レベル2',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    );
-  }
-}
-
-class Level3 extends StatelessWidget {
-  const Level3();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'レベル3',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
