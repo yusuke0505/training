@@ -5,9 +5,13 @@ class Level2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'レベル2',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    return ListView(
+      children: [
+        Text(
+          'レベル2',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
