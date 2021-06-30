@@ -7,9 +7,23 @@ class Level1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Text(
-          'レベル1',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            color: Colors.blue.shade50,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(12),
+            child: Text('ボタン1'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            color: Colors.blueGrey.shade200,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(12),
+            child: Text('ボタン2'),
+          ),
         ),
       ],
     );
