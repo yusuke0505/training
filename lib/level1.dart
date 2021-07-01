@@ -7,19 +7,19 @@ class Level1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Level1Button(
-          margin: EdgeInsets.all(20),
-          color: Colors.blue.shade50,
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(12),
-          text: 'ボタン1',
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Level1Button(
+            color: ColorEnum.BlueShade50,
+            text: ButtonTextEnum.Button1,
+          ),
         ),
-        Level1Button(
-          margin: EdgeInsets.all(20),
-          color: Colors.blueGrey.shade200,
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(12),
-          text: 'ボタン2',
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Level1Button(
+            color: ColorEnum.BlueGreyShade200,
+            text: ButtonTextEnum.Button2,
+          ),
         ),
       ],
     );
@@ -28,29 +28,48 @@ class Level1 extends StatelessWidget {
 
 class Level1Button extends StatelessWidget {
   const Level1Button({
-    required this.margin,
     required this.color,
-    required this.alignment,
     required this.text,
-    required this.padding,
   });
 
-  final EdgeInsets margin;
-  final Color color;
-  final Alignment alignment;
-  final EdgeInsets padding;
-  final String text;
+  final ColorEnum color;
+  final ButtonTextEnum text;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin,
-      child: Container(
-        color: color,
-        alignment: alignment,
-        padding: padding,
-        child: Text(text),
-      ),
+    return Container(
+      color: color.value,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(12),
+      child: Text(text.value),
     );
   }
+}
+
+enum ColorEnum {
+  BlueShade50,
+  BlueGreyShade200,
+}
+
+extension ColorEnumExtension on ColorEnum {
+  static final values = {
+    ColorEnum.BlueShade50: Colors.blue.shade50,
+    ColorEnum.BlueGreyShade200: Colors.blueGrey.shade200,
+  };
+
+  Color get value => values[this] ?? Colors.black;
+}
+
+enum ButtonTextEnum {
+  Button1,
+  Button2,
+}
+
+extension ButtonTextEnumExtension on ButtonTextEnum {
+  static final values = {
+    ButtonTextEnum.Button1: 'ボタン1',
+    ButtonTextEnum.Button2: 'ボタン2',
+  };
+
+  String get value => values[this] ?? 'テキスト情報がありません';
 }
