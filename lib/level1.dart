@@ -7,25 +7,50 @@ class Level1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Container(
-            color: Colors.blue.shade50,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(12),
-            child: Text('ボタン1'),
-          ),
+        Level1Button(
+          margin: EdgeInsets.all(20),
+          color: Colors.blue.shade50,
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(12),
+          text: 'ボタン1',
         ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Container(
-            color: Colors.blueGrey.shade200,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(12),
-            child: Text('ボタン2'),
-          ),
+        Level1Button(
+          margin: EdgeInsets.all(20),
+          color: Colors.blueGrey.shade200,
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(12),
+          text: 'ボタン2',
         ),
       ],
+    );
+  }
+}
+
+class Level1Button extends StatelessWidget {
+  const Level1Button({
+    required this.margin,
+    required this.color,
+    required this.alignment,
+    required this.text,
+    required this.padding,
+  });
+
+  final EdgeInsets margin;
+  final Color color;
+  final Alignment alignment;
+  final EdgeInsets padding;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: margin,
+      child: Container(
+        color: color,
+        alignment: alignment,
+        padding: padding,
+        child: Text(text),
+      ),
     );
   }
 }
