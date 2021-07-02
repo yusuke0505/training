@@ -10,15 +10,15 @@ class Level1 extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(20),
           child: Level1Button(
-            color: ColorEnum.BlueShade50,
-            text: ButtonTextEnum.Button1,
+            color: Value.BlueShade50.color,
+            text: Value.Label1.label,
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(20),
           child: Level1Button(
-            color: ColorEnum.BlueGreyShade200,
-            text: ButtonTextEnum.Button2,
+            color: Value.BlueGreyShade200.color,
+            text: Value.Label2.label,
           ),
         ),
       ],
@@ -32,44 +32,38 @@ class Level1Button extends StatelessWidget {
     required this.text,
   });
 
-  final ColorEnum color;
-  final ButtonTextEnum text;
+  final Color color;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color.value,
+      color: color,
       alignment: Alignment.center,
       padding: const EdgeInsets.all(12),
-      child: Text(text.value),
+      child: Text(text),
     );
   }
 }
 
-enum ColorEnum {
+enum Value {
   BlueShade50,
   BlueGreyShade200,
+  Label1,
+  Label2,
 }
 
-extension ColorEnumExtension on ColorEnum {
-  static final values = {
-    ColorEnum.BlueShade50: Colors.blue.shade50,
-    ColorEnum.BlueGreyShade200: Colors.blueGrey.shade200,
+extension ValueExtension on Value {
+  static final colors = {
+    Value.BlueShade50: Colors.blue.shade50,
+    Value.BlueGreyShade200: Colors.blueGrey.shade200,
   };
 
-  Color get value => values[this] ?? Colors.black;
-}
-
-enum ButtonTextEnum {
-  Button1,
-  Button2,
-}
-
-extension ButtonTextEnumExtension on ButtonTextEnum {
-  static final values = {
-    ButtonTextEnum.Button1: 'ボタン1',
-    ButtonTextEnum.Button2: 'ボタン2',
+  static final labels = {
+    Value.Label1: 'ボタン1',
+    Value.Label2: 'ボタン2',
   };
 
-  String get value => values[this] ?? 'テキスト情報がありません';
+  Color get color => colors[this] ?? Colors.black;
+  String get label => labels[this] ?? '情報が不正です';
 }
