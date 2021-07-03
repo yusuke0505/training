@@ -5,65 +5,51 @@ class Level1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Level1Button(
-            color: Value.BlueShade50.color,
-            text: Value.Label1.label,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Level1Button(
-            color: Value.BlueGreyShade200.color,
-            text: Value.Label2.label,
-          ),
-        ),
-      ],
-    );
+    return ListView.builder(
+        itemCount: Button.values.length,
+        itemBuilder: (_, int index) {
+          return Padding(
+            padding: const EdgeInsets.all(20),
+            child: Level1Button(Button.values[index]),
+          );
+        });
   }
 }
 
 class Level1Button extends StatelessWidget {
-  const Level1Button({
-    required this.color,
-    required this.text,
-  });
+  const Level1Button(this.button);
 
-  final Color color;
-  final String text;
+  final Button button;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color,
+      color: button.color,
       alignment: Alignment.center,
       padding: const EdgeInsets.all(12),
-      child: Text(text),
+      child: Text(button.label),
     );
   }
 }
 
-enum Value {
-  BlueShade50,
-  BlueGreyShade200,
-  Label1,
-  Label2,
-}
+enum Button { type1, type2 }
 
-extension ValueExtension on Value {
-  static final colors = {
-    Value.BlueShade50: Colors.blue.shade50,
-    Value.BlueGreyShade200: Colors.blueGrey.shade200,
-  };
+extension ButtonExtension on Button {
+  Color get color {
+    switch (this) {
+      case Button.type1:
+        return Colors.blue.shade50;
+      case Button.type2:
+        return Colors.blueGrey.shade200;
+    }
+  }
 
-  static final labels = {
-    Value.Label1: 'ボタン1',
-    Value.Label2: 'ボタン2',
-  };
-
-  Color get color => colors[this] ?? Colors.black;
-  String get label => labels[this] ?? '情報が不正です';
+  String get label {
+    switch (this) {
+      case Button.type1:
+        return 'ボタン1';
+      case Button.type2:
+        return 'ボタン2';
+    }
+  }
 }
