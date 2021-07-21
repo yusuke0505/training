@@ -75,8 +75,7 @@ class _Level3State extends State<Level3> {
               });
             },
             child: Container(
-              color:
-                  isButton4Active ? Colors.amber.shade400 : Colors.black54,
+              color: isButton4Active ? Colors.amber.shade400 : Colors.black54,
               alignment: Alignment.center,
               padding: const EdgeInsets.all(12),
               child: Text(
