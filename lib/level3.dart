@@ -12,33 +12,12 @@ class Level3 extends StatelessWidget {
         myButton(buttons[1], context),
         myButton(buttons[2], context),
         TapButton(buttons[3]),
-        // Padding(
-        //   padding: const EdgeInsets.all(20),
-        //   child: GestureDetector(
-        //     onTap: () {
-        //       setState(() {
-        //         isButton4Active = !isButton4Active;
-        //       });
-        //     },
-        //     child: Container(
-        //       color: isButton4Active ? Colors.amber.shade400 : Colors.black54,
-        //       alignment: Alignment.center,
-        //       padding: const EdgeInsets.all(12),
-        //       child: Text(
-        //         isButton4Active ? '送信' : '送信済',
-        //         style: TextStyle(
-        //           color: isButton4Active ? null : Colors.white,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }
 }
 
-enum Button { type1, type2, type3 }
+enum Button { type1, type2, type3, type4 }
 
 extension ButtonExt on Button {
   bool get haveRow {
@@ -65,6 +44,8 @@ extension ButtonExt on Button {
         return Colors.blueGrey.shade200;
       case Button.type3:
         return Colors.lightGreenAccent.shade400;
+      case Button.type4:
+        return Colors.amber.shade400;
     }
   }
 
@@ -76,6 +57,8 @@ extension ButtonExt on Button {
         return 'ボタン2';
       case Button.type3:
         return 'ボタン3';
+      case Button.type4:
+        return '送信';
     }
   }
 
@@ -150,34 +133,32 @@ class TapButton extends StatefulWidget {
   const TapButton(
     this.button,
   );
-  // const TapButton(this.button, this.onTap);
   final Button button;
-  // final VoidCallback onTap;
 
   @override
   _TapButtonState createState() => _TapButtonState();
 }
 
 class _TapButtonState extends State<TapButton> {
-  bool isActive = true;
+  bool _isActive = true;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: GestureDetector(
         onTap: () {
-          // setState(() {
-          //   isActive = !isActive;
-          // });
+          setState(() {
+            _isActive = !_isActive;
+          });
           print("hello");
         },
         child: Container(
-          color: isActive ? Colors.amber.shade400 : Colors.black54,
+          color: _isActive ? widget.button.color : Colors.black54,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(12),
           child: Text(
-            isActive ? '送信' : '送信済',
+            _isActive ? widget.button.label : '送信済',
             style: TextStyle(
-              color: isActive ? null : Colors.white,
+              color: _isActive ? null : Colors.white,
             ),
           ),
         ),
