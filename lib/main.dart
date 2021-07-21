@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'level1.dart';
 import 'level2.dart';
 import 'level3.dart';
+import 'package:training/components/button.dart';
 
 void main() => runApp(const MyApp());
 
@@ -36,7 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     Level1(),
     Level2(),
-    Level3(),
+    Level3(Button.values),
   ];
 
   void _onItemTapped(int index) {
