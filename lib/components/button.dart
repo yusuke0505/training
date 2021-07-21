@@ -1,37 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum Button { type1, type2, type3, type4, type5 }
+enum Button { type1, type2 }
 
 extension ButtonExt on Button {
-  bool get haveRow {
-    if (this == Button.type5) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool get isGesture {
-    if (this == Button.type4) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   Color get color {
     switch (this) {
       case Button.type1:
         return Colors.blue.shade50;
       case Button.type2:
         return Colors.blueGrey.shade200;
-      case Button.type3:
-        return Colors.blue.shade50;
-      case Button.type4:
-        return Colors.blueGrey.shade200;
-      case Button.type5:
-        return Colors.lightGreenAccent.shade400;
     }
   }
 
@@ -41,12 +19,6 @@ extension ButtonExt on Button {
         return 'ボタン1';
       case Button.type2:
         return 'ボタン2';
-      case Button.type3:
-        return 'ボタン1';
-      case Button.type4:
-        return 'ボタン2';
-      case Button.type5:
-        return 'ボタン3';
     }
   }
 
@@ -66,22 +38,7 @@ extension ButtonExt on Button {
 Widget myButton(Button button, BuildContext context) {
   return Padding(
     padding: button.outerpadding,
-    child: (() {
-      if (button.isGesture) {
-        return GestureDetector(
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Yay! A SnackBar!'),
-              ),
-            );
-          },
-          child: buttonCointainer(button),
-        );
-      } else {
-        return buttonCointainer(button);
-      }
-    }()),
+    child: buttonCointainer(button),
   );
 }
 
@@ -90,29 +47,6 @@ Widget buttonCointainer(Button button) {
     color: button.color,
     alignment: button.alignment,
     padding: button.innerpadding,
-    child: (() {
-      if (button.haveRow) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: 16,
-              height: 16,
-            ),
-            Text(button.label),
-            SizedBox(
-              width: 16,
-              height: 16,
-              child: Icon(
-                Icons.search,
-                size: 16,
-              ),
-            ),
-          ],
-        );
-      } else {
-        return Text(button.label);
-      }
-    }()),
+    child: Text(button.label),
   );
 }
