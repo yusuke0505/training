@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training/components/button.dart';
 
 import 'level1.dart';
 import 'level2.dart';
@@ -34,8 +35,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Level1(),
-    Level2(),
+    Level1(Button.values),
+    Level2(Button.values),
     Level3(),
   ];
 
