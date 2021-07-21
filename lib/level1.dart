@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:training/components/button.dart';
 
 class Level1 extends StatelessWidget {
-  const Level1(this.buttons);
-  final List<Button> buttons;
+  const Level1();
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        myButton(buttons[0], context),
-        myButton(buttons[1], context),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            color: Colors.blue.shade50,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(12),
+            child: Text('ボタン1'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            color: Colors.blueGrey.shade200,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(12),
+            child: Text('ボタン2'),
+          ),
+        ),
       ],
     );
   }

@@ -9,9 +9,9 @@ class Level2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        myButton(buttons[0], context),
+        myButton(buttons[1], context),
         myButton(buttons[2], context),
-        myButton(buttons[3], context),
-        myButton(buttons[4], context),
       ],
     );
   }

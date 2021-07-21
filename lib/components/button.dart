@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum Button { type1, type2, type3, type4, type5 }
+enum Button { type1, type2, type3 }
 
 extension ButtonExt on Button {
   bool get haveRow {
-    if (this == Button.type5) {
+    if (this == Button.type3) {
       return true;
     } else {
       return false;
@@ -13,7 +13,7 @@ extension ButtonExt on Button {
   }
 
   bool get isGesture {
-    if (this == Button.type4) {
+    if (this == Button.type2) {
       return true;
     } else {
       return false;
@@ -27,10 +27,6 @@ extension ButtonExt on Button {
       case Button.type2:
         return Colors.blueGrey.shade200;
       case Button.type3:
-        return Colors.blue.shade50;
-      case Button.type4:
-        return Colors.blueGrey.shade200;
-      case Button.type5:
         return Colors.lightGreenAccent.shade400;
     }
   }
@@ -42,10 +38,6 @@ extension ButtonExt on Button {
       case Button.type2:
         return 'ボタン2';
       case Button.type3:
-        return 'ボタン1';
-      case Button.type4:
-        return 'ボタン2';
-      case Button.type5:
         return 'ボタン3';
     }
   }
