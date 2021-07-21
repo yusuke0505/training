@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'level1.dart';
 import 'level2.dart';
 import 'level3.dart';
-import 'package:training/components/button.dart';
 
 void main() => runApp(const MyApp());
 
