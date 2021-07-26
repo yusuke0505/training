@@ -8,10 +8,22 @@ class Level3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        myButton(buttons[0], context),
-        myButton(buttons[1], context),
-        myButton(buttons[2], context),
-        TapButton(buttons[3]),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[0], context),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[1], context),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[2], context),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: TapButton(buttons[3]),
+        ),
       ],
     );
   }
@@ -76,25 +88,20 @@ extension ButtonExt on Button {
 }
 
 Widget myButton(Button button, BuildContext context) {
-  return Padding(
-    padding: button.outerpadding,
-    child: (() {
-      if (button.isGesture) {
-        return GestureDetector(
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Yay! A SnackBar!'),
-              ),
-            );
-          },
-          child: buttonCointainer(button),
+  if (button.isGesture) {
+    return GestureDetector(
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Yay! A SnackBar!'),
+          ),
         );
-      } else {
-        return buttonCointainer(button);
-      }
-    }()),
-  );
+      },
+      child: buttonCointainer(button),
+    );
+  } else {
+    return buttonCointainer(button);
+  }
 }
 
 Widget buttonCointainer(Button button) {
@@ -142,24 +149,21 @@ class TapButton extends StatefulWidget {
 class _TapButtonState extends State<TapButton> {
   bool _isActive = true;
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _isActive = !_isActive;
-          });
-          print("hello");
-        },
-        child: Container(
-          color: _isActive ? widget.button.color : Colors.black54,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(12),
-          child: Text(
-            _isActive ? widget.button.label : '送信済',
-            style: TextStyle(
-              color: _isActive ? null : Colors.white,
-            ),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isActive = !_isActive;
+        });
+        print("hello");
+      },
+      child: Container(
+        color: _isActive ? widget.button.color : Colors.black54,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(12),
+        child: Text(
+          _isActive ? widget.button.label : '送信済',
+          style: TextStyle(
+            color: _isActive ? null : Colors.white,
           ),
         ),
       ),
