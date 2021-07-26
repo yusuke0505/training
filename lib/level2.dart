@@ -8,9 +8,18 @@ class Level2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        myButton(buttons[0], context),
-        myButton(buttons[1], context),
-        myButton(buttons[2], context),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[0], context),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[1], context),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: myButton(buttons[2], context),
+        ),
       ],
     );
   }
@@ -71,25 +80,20 @@ extension ButtonExt on Button {
 }
 
 Widget myButton(Button button, BuildContext context) {
-  return Padding(
-    padding: button.outerpadding,
-    child: (() {
-      if (button.isGesture) {
-        return GestureDetector(
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Yay! A SnackBar!'),
-              ),
-            );
-          },
-          child: buttonCointainer(button),
+  if (button.isGesture) {
+    return GestureDetector(
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Yay! A SnackBar!'),
+          ),
         );
-      } else {
-        return buttonCointainer(button);
-      }
-    }()),
-  );
+      },
+      child: buttonCointainer(button),
+    );
+  } else {
+    return buttonCointainer(button);
+  }
 }
 
 Widget buttonCointainer(Button button) {
