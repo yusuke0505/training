@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 
 class Level3 extends StatelessWidget {
-  const Level3(this.buttons);
-  final List<Button> buttons;
+  const Level3();
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+        for (int i = 0; i < 3; i++)
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: myButton(Button.values[i], context),
+          ),
         Padding(
           padding: const EdgeInsets.all(20),
-          child: myButton(buttons[0], context),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: myButton(buttons[1], context),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: myButton(buttons[2], context),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: TapButton(buttons[3]),
+          child: TapButton(Button.values[3]),
         ),
       ],
     );
@@ -74,11 +66,7 @@ extension ButtonExt on Button {
     }
   }
 
-  EdgeInsets get outerpadding {
-    return const EdgeInsets.all(20);
-  }
-
-  EdgeInsets get innerpadding {
+  EdgeInsets get padding {
     return const EdgeInsets.all(12);
   }
 
@@ -108,7 +96,7 @@ Widget buttonCointainer(Button button) {
   return Container(
     color: button.color,
     alignment: button.alignment,
-    padding: button.innerpadding,
+    padding: button.padding,
     child: (() {
       if (button.haveRow) {
         return Row(
