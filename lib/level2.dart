@@ -41,11 +41,7 @@ extension ButtonExt on Button {
     }
   }
 
-  EdgeInsets get outerpadding {
-    return const EdgeInsets.all(20);
-  }
-
-  EdgeInsets get innerpadding {
+  EdgeInsets get padding {
     return const EdgeInsets.all(12);
   }
 
@@ -89,7 +85,7 @@ Widget buttonCointainer(Button button) {
   return Container(
     color: button.color,
     alignment: button.alignment,
-    padding: button.innerpadding,
+    padding: button.padding,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
