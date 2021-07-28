@@ -64,7 +64,7 @@ class Level3 extends StatelessWidget {
         for (int i = 0; i < 3; i++)
           Padding(
             padding: const EdgeInsets.all(20),
-            child: myButton(Button.values[i], context),
+            child: _buildMyButton(Button.values[i], context),
           ),
         Padding(
           padding: const EdgeInsets.all(20),
@@ -73,48 +73,48 @@ class Level3 extends StatelessWidget {
       ],
     );
   }
-}
 
-Widget myButton(Button button, BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      if (button.isGesture)
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Yay! A SnackBar!'),
+  Widget _buildMyButton(Button button, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (button.isGesture)
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Yay! A SnackBar!'),
+            ),
+          );
+      },
+      child: __buildbuttonCointainer(button),
+    );
+  }
+
+  Widget __buildbuttonCointainer(Button button) {
+    return Container(
+      color: button.color,
+      alignment: button.alignment,
+      padding: button.padding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 16,
+            height: 16,
           ),
-        );
-    },
-    child: buttonCointainer(button),
-  );
-}
-
-Widget buttonCointainer(Button button) {
-  return Container(
-    color: button.color,
-    alignment: button.alignment,
-    padding: button.padding,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 16,
-          height: 16,
-        ),
-        Text(button.label),
-        SizedBox(
-          width: 16,
-          height: 16,
-          child: (button.haveRow)
-              ? Icon(
-                  Icons.search,
-                  size: 16,
-                )
-              : null,
-        ),
-      ],
-    ),
-  );
+          Text(button.label),
+          SizedBox(
+            width: 16,
+            height: 16,
+            child: (button.haveRow)
+                ? Icon(
+                    Icons.search,
+                    size: 16,
+                  )
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class TapButton extends StatefulWidget {
