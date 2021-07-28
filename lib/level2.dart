@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Level2 extends StatelessWidget {
-  const Level2();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        for (final btn in Button.values)
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: myButton(btn, context),
-          ),
-      ],
-    );
-  }
-}
-
 enum Button { type1, type2, type3 }
 
 extension ButtonExt on Button {
@@ -71,21 +54,35 @@ extension ButtonExt on Button {
   }
 }
 
+class Level2 extends StatelessWidget {
+  const Level2();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        for (final btn in Button.values)
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: myButton(btn, context),
+          ),
+      ],
+    );
+  }
+}
+
 Widget myButton(Button button, BuildContext context) {
-  if (button.isGesture) {
-    return GestureDetector(
-      onTap: () {
+  return GestureDetector(
+    onTap: () {
+      if (button.isGesture)
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Yay! A SnackBar!'),
           ),
         );
-      },
-      child: buttonCointainer(button),
-    );
-  } else {
-    return buttonCointainer(button);
-  }
+    },
+    child: buttonCointainer(button),
+  );
 }
 
 Widget buttonCointainer(Button button) {
@@ -93,29 +90,25 @@ Widget buttonCointainer(Button button) {
     color: button.color,
     alignment: button.alignment,
     padding: button.innerpadding,
-    child: (() {
-      if (button.haveRow) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: 16,
-              height: 16,
-            ),
-            Text(button.label),
-            SizedBox(
-              width: 16,
-              height: 16,
-              child: Icon(
-                Icons.search,
-                size: 16,
-              ),
-            ),
-          ],
-        );
-      } else {
-        return Text(button.label);
-      }
-    }()),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: 16,
+          height: 16,
+        ),
+        Text(button.label),
+        SizedBox(
+          width: 16,
+          height: 16,
+          child: (button.haveRow)
+              ? Icon(
+                  Icons.search,
+                  size: 16,
+                )
+              : null,
+        ),
+      ],
+    ),
   );
 }
