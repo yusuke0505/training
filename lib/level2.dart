@@ -3,19 +3,26 @@ import 'package:flutter/material.dart';
 enum Button { type1, type2, type3 }
 
 extension ButtonExt on Button {
-  bool get haveRow {
+  Widget? get rightIcon {
     if (this == Button.type3) {
-      return true;
+      return Icon(
+        Icons.search,
+        size: 16,
+      );
     } else {
-      return false;
+      return null;
     }
   }
 
-  bool get isGesture {
+  void onTap(BuildContext context) {
     if (this == Button.type2) {
-      return true;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Yay! A SnackBar!'),
+        ),
+      );
     } else {
-      return false;
+      return;
     }
   }
 
@@ -70,12 +77,7 @@ class Level2 extends StatelessWidget {
 Widget myButton(Button button, BuildContext context) {
   return GestureDetector(
     onTap: () {
-      if (button.isGesture)
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Yay! A SnackBar!'),
-          ),
-        );
+      button.onTap(context);
     },
     child: buttonCointainer(button),
   );
@@ -97,12 +99,7 @@ Widget buttonCointainer(Button button) {
         SizedBox(
           width: 16,
           height: 16,
-          child: (button.haveRow)
-              ? Icon(
-                  Icons.search,
-                  size: 16,
-                )
-              : null,
+          child: button.rightIcon,
         ),
       ],
     ),
