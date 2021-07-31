@@ -67,41 +67,41 @@ class Level2 extends StatelessWidget {
         for (final btn in Button.values)
           Padding(
             padding: const EdgeInsets.all(20),
-            child: myButton(btn, context),
+            child: _buildButton(btn, context),
           ),
       ],
     );
   }
-}
 
-Widget myButton(Button button, BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      button.onTap(context);
-    },
-    child: buttonCointainer(button),
-  );
-}
+  Widget _buildButton(Button button, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        button.onTap(context);
+      },
+      child: _buildButtonCointainer(button),
+    );
+  }
 
-Widget buttonCointainer(Button button) {
-  return Container(
-    color: button.color,
-    alignment: button.alignment,
-    padding: button.padding,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 16,
-          height: 16,
-        ),
-        Text(button.label),
-        SizedBox(
-          width: 16,
-          height: 16,
-          child: button.rightIcon,
-        ),
-      ],
-    ),
-  );
+  Widget _buildButtonCointainer(Button button) {
+    return Container(
+      color: button.color,
+      alignment: button.alignment,
+      padding: button.padding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 16,
+            height: 16,
+          ),
+          Text(button.label),
+          SizedBox(
+            width: 16,
+            height: 16,
+            child: button.rightIcon,
+          ),
+        ],
+      ),
+    );
+  }
 }
