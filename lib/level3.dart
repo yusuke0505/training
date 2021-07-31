@@ -3,19 +3,26 @@ import 'package:flutter/material.dart';
 enum Button { type1, type2, type3, type4 }
 
 extension ButtonExt on Button {
-  bool get haveRow {
+  Widget? get rightIcon {
     if (this == Button.type3) {
-      return true;
+      return Icon(
+        Icons.search,
+        size: 16,
+      );
     } else {
-      return false;
+      return null;
     }
   }
 
-  bool get isGesture {
+  void onTap(BuildContext context) {
     if (this == Button.type2) {
-      return true;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Yay! A SnackBar!'),
+        ),
+      );
     } else {
-      return false;
+      return;
     }
   }
 
@@ -77,18 +84,13 @@ class Level3 extends StatelessWidget {
   Widget _buildMyButton(Button button, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (button.isGesture)
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Yay! A SnackBar!'),
-            ),
-          );
+        button.onTap(context);
       },
-      child: __buildbuttonCointainer(button),
+      child: _buildbuttonCointainer(button),
     );
   }
 
-  Widget __buildbuttonCointainer(Button button) {
+  Widget _buildbuttonCointainer(Button button) {
     return Container(
       color: button.color,
       alignment: button.alignment,
@@ -104,12 +106,7 @@ class Level3 extends StatelessWidget {
           SizedBox(
             width: 16,
             height: 16,
-            child: (button.haveRow)
-                ? Icon(
-                    Icons.search,
-                    size: 16,
-                  )
-                : null,
+            child: button.rightIcon,
           ),
         ],
       ),
@@ -118,9 +115,7 @@ class Level3 extends StatelessWidget {
 }
 
 class TapButton extends StatefulWidget {
-  const TapButton(
-    this.button,
-  );
+  const TapButton(this.button);
   final Button button;
 
   @override
@@ -129,13 +124,14 @@ class TapButton extends StatefulWidget {
 
 class _TapButtonState extends State<TapButton> {
   bool _isActive = true;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         setState(() {
           _isActive = !_isActive;
         });
-        print("hello");
       },
       child: Container(
         color: _isActive ? widget.button.color : Colors.black54,
