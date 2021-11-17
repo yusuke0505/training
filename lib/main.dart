@@ -33,7 +33,19 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<AppBar> _headers = <AppBar>[
+    AppBar(
+      title: const Text('レベル1'),
+    ),
+    AppBar(
+      title: const Text('レベル2'),
+    ),
+    AppBar(
+      title: const Text('レベル3'),
+    ),
+  ];
+
+  static const List<Widget> _bodies = <Widget>[
     Level1(),
     Level2(),
     Level3(),
@@ -48,10 +60,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('トレーニング'),
-      ),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      drawer: Drawer(),
+      appBar: _headers.elementAt(_selectedIndex),
+      body: _bodies.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
